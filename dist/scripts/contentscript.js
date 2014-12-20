@@ -1,0 +1,1 @@
+"use strict";console.log("'Allo 'Allo! Content script"),setInterval(function(){console.log($(".cloudContent pre:last").text())},1e3);
