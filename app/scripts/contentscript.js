@@ -18,14 +18,14 @@ var msg = {
 
 setInterval(function() {
     var id = $('.chatItem:last').attr('un');
-    var avatar = 'https://wx.qq.com/' + $('.chatItemContent:last .avatar').attr('src');
+    var avatar = 'https://wx.qq.com' + $('.chatItemContent:last .avatar').attr('src');
     var name = $('.chatItemContent:last .avatar').attr('title');
     var text = $('.chatItemContent:last pre').text();
     var time = $('.chatItem:last .time').text().trim();
     if($('.chatItemContent:last pre img').length) {
-        var img = 'https://wx.qq.com/' + $('.chatItemContent:last pre img').attr('src');
+        var img = 'https://wx.qq.com' + $('.chatItemContent:last pre img').attr('src');
     } else if($('.chatItemContent:last .img_wrap img').length) {
-        var img = 'https://wx.qq.com/' + $('.chatItemContent:last .img_wrap img').attr('src');
+        var img = 'https://wx.qq.com' + $('.chatItemContent:last .img_wrap img').attr('src');
     }
     var newMsg = {
         id: id,
