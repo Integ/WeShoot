@@ -1,8 +1,12 @@
 .weshoot-item {
-	position: fixed;
-	transition: all 10s ease;
+	/*position: fixed;*/
+	position: absolute;
 	display: block;
+	font-size: 20px;
+	color: #808080;
+	transition-property: all;
+	transition-timing-function: linear;
 }
 .weshoot-item.default {
-	right: -1000px;
+	/*right: -1000px;*/
 }
