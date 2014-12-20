@@ -14,7 +14,8 @@ var msg = {
         image: ''
     }
 };
-var port = chrome.runtime.connect({name: "WeShoot"});
+
+
 setInterval(function() {
     var id = $('.chatItem:last').attr('un');
     var avatar = 'https://wx.qq.com/' + $('.chatItemContent:last .avatar').attr('src');
@@ -35,12 +36,9 @@ setInterval(function() {
         }
     };
     if(id !== msg.id) {
-        console.log(newMsg);
-        port.postMessage(newMsg);
+        chrome.runtime.sendMessage(newMsg, function(response) {
+              console.log(response);
+        });
         msg = newMsg;
     }
 }, 1e3);
-
-port.onMessage.addListener(function(msg) {
-    console.log(msg);
-});

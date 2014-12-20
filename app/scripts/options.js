@@ -2,12 +2,12 @@
 
 console.log('\'Allo \'Allo! Option');
 
-chrome.runtime.onConnect.addListener(function(port) {
-  console.assert(port.name == "WeShoot");
-  port.onMessage.addListener(function(msg) {
-    console.log(msg)
-  });
-});
+chrome.runtime.onMessage.addListener(
+    function(request, sender, sendResponse) {
+        console.log(request);
+        sendResponse({status: "OK"});
+    }
+);
 
 var danmus = ['呜呜呜呜','呵呵','你和','sef','都等了多久多久多久','坑爹坑爹的','对对对','到底'];
 var HEIGHT = window.innerHeight;
@@ -41,3 +41,4 @@ function shoot(danmu) {
     });
   // })
 }
+
