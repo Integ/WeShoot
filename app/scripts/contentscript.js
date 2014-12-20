@@ -39,6 +39,7 @@ setInterval(function() {
         }
     };
     if(id !== msg.id) {
+        console.log(newMsg);
         chrome.runtime.sendMessage(newMsg, function(response) {
               console.log(response);
         });
