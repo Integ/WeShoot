@@ -23,6 +23,9 @@ setInterval(function() {
     var text = $('.chatItemContent:last pre').text();
     var img = 'https://wx.qq.com/' + $('.chatItemContent:last .img_wrap img').attr('src');
     var time = $('.chatItem:last .time').text().trim();
+    if($('.chatItemContent:last pre img').length) {
+        img = 'https://wx.qq.com/' + $('.chatItemContent:last pre img').attr('src');
+    }
     var newMsg = {
         id: id,
         user: {
