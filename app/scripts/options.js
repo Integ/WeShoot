@@ -5,6 +5,13 @@ console.log('\'Allo \'Allo! Option');
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
         console.log(request);
+        if(request.msg.text) {
+          shoot(request.msg.text);
+          
+        } else {
+          shoot('<img src="'+request.msg.image+'" />');
+        }
+        
         sendResponse({status: "OK"});
     }
 );
@@ -13,29 +20,32 @@ var danmus = ['呜呜呜呜','呵呵','你和','sef','都等了多久多久多�
 var HEIGHT = window.innerHeight;
 var WIDTH = window.innerWidth;
 var danmuTop,danmuRight,danmuWidth,$danmuItem;
-setInterval(function(key, danmu) {
-  shoot(danmus[~~(Math.random()*danmus.length)])
-},2000)
+// setInterval(function(key, danmu) {
+//   shoot(danmus[~~(Math.random()*danmus.length)])
+// },50)
 function shoot(danmu) {
   // $.each(danmus, function(key, danmu) {
   // console.log(danmu);
     $danmuItem = $('<div>'+danmu+'</div>').addClass('weshoot-item').addClass('default');
     
     $danmuItem.hide().appendTo('body');
-    // console.log($danmuItem.width());
+    // console.log(Math.floor(Math.random()*0xFFFFFF).toString(16));
     $danmuItem.css({
-      top: ~~(Math.random() * HEIGHT),
+      'font-size': ~~(Math.random()*10)+18,
+    })
+    $danmuItem.css({
+      top: ~~(Math.random() * HEIGHT) - $danmuItem.height(),
       left: WIDTH+$danmuItem.width(),
-      width: $danmuItem.width()
-      // 'transition-duration': ~~(Math.random() * 5) + 10
+      color: '#'+Math.floor(Math.random()*0xFFFFFF).toString(16),
+      width: $danmuItem.width(),
     }).show();
     // $danmuItem.css('right',WIDTH);
     $danmuItem.animate({
       left: -$danmuItem.width()
     },~~(Math.random() * 15) + 15000, 'linear', function() {
       /* stuff to do after animation is complete */
-      console.log($(this).css('left').slice(0,-2))
-      if($(this).css('left').slice(0,-2) <= '-'+$danmuItem.width()) {
+      // console.log($(this).css('left').slice(0,-2))
+      if(-$(this).css('left').slice(0,-2)-100 <= $danmuItem.width()) {
         $(this).remove();
       }
     });
