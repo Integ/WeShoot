@@ -2,15 +2,40 @@
 
 console.log('\'Allo \'Allo! Content script');
 
-var Msgs = [];
+var msg = {
+    id: '',
+    user: {
+        name: '',
+        avatar: ''
+    },
+    time: '',
+    msg: {
+        text: '',
+        image: ''
+    }
+};
 setInterval(function() {
     var id = $('.chatItem:last').attr('un');
     var avatar = $('.chatItemContent:last .avatar').attr('src');
     var name = $('.chatItemContent:last .avatar').attr('title');
-    var text = $('.chatItemContent:last').text();
-    if(text !== Msgs[Msgs.length-1]) {
-        console.log(text);
-        Msgs.push(text);
+    var text = $('.chatItemContent:last pre').text();
+    var img = $('.chatItemContent:last .img_wrap img').attr('src');
+    var time = $('.chatItem:last .time').text().trim();
+    var newMsg = {
+        id: id,
+        user: {
+            name: name,
+            avatar: avatar
+        },
+        time: time,
+        msg: {
+            text: text,
+            image: img
+        }
+    };
+    if(id !== msg.id) {
+        console.log(newMsg);
+        msg = newMsg;
     }
 }, 1e3);
 
