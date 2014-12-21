@@ -26,10 +26,8 @@
     "content_scripts": [
         {
             "matches": [
-                "http://w.qq.com/*",
-                "http://wx.qq.com/*",
-                "https://w.qq.com/*",
-                "https://wx.qq.com/*"
+                "http://*/*",
+                "https://*/*"
             ],
             "css": [
                 "styles/main.css"
