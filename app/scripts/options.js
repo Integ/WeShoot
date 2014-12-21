@@ -7,11 +7,9 @@ chrome.runtime.onMessage.addListener(
         console.log(request);
         if(request.msg.text) {
           shoot(request.msg.text);
-          
         } else {
           shoot('<img src="'+request.msg.image+'" />');
         }
-        
         sendResponse({status: "OK"});
     }
 );
