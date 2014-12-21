@@ -18,29 +18,9 @@ var msg = {
     }
 };
 
-function notifyMe(data) {
-    if (!Notification) {
-        alert('Please us a modern version of Chrome, Firefox, Opera or Firefox.');
-        return;
-    }
-
-    if (Notification.permission !== "granted") {
-        Notification.requestPermission();
-    }
-
-    var notification = new Notification(data.msg.text, {
-        icon: data.user.avatar,
-        body: data.msg.test,
-    });
-
-    setTimeout(function() {
-        notification.close();
-    }, 1e4);
-}
-
-setInterval(function() {
+function makeData() {
     if (platform === 'qq') {
-        if ($('.chat_content:last img').length) { //微信发带表情的内容
+        if ($('.chat_content:last img').length) {
             var text = $('.chat_content:last').html();
         } else {
             var text = $('.chat_content:last').text();
@@ -70,7 +50,7 @@ setInterval(function() {
         }
         if ($('.chatItemContent:last .img_wrap img').length) { //微信发照片
             var img = 'https://wx.qq.com' + $('.chatItemContent:last .img_wrap img').attr('src');
-        } else if($('.chatItemContent:last .customEmoji').length) {
+        } else if ($('.chatItemContent:last .customEmoji').length) {
             var img = 'https://wx.qq.com' + $('.chatItemContent:last .customEmoji').attr('src');
         } else {
             var img = '';
@@ -88,12 +68,51 @@ setInterval(function() {
             }
         };
     }
-    if (newMsg.id && newMsg.id !== msg.id) {
-        console.log(newMsg);
-        chrome.runtime.sendMessage(newMsg, function(response) {
-            console.log(response);
-        });
-        notifyMe(newMsg);
-        msg = newMsg;
+    return newMsg;
+}
+
+function notifyMe(data) {
+    if (!Notification) {
+        alert('Please us a modern version of Chrome, Firefox, Opera or Firefox.');
+        return;
     }
-}, 1e3);
+
+    if (Notification.permission !== "granted") {
+        Notification.requestPermission();
+    }
+
+    var notification = new Notification(data.msg.text, {
+        icon: data.user.avatar,
+        body: data.msg.test,
+    });
+
+    setTimeout(function() {
+        notification.close();
+    }, 1e4);
+}
+
+if (platform === 'wx') {
+    $('#chatMainPanel').bind("DOMNodeInserted DOMNodeRemoved", function() {
+        var newMsg = makeData();
+        if (newMsg.id && newMsg.id !== msg.id) {
+            console.log(newMsg);
+            chrome.runtime.sendMessage(newMsg, function(response) {
+                console.log(response);
+            });
+            //notifyMe(newMsg);
+            msg = newMsg;
+        }
+    });
+} else if (platform === 'qq') {
+    $('body').bind("DOMNodeInserted DOMNodeRemoved", function() {
+        var newMsg = makeData();
+        if (newMsg.id && newMsg.id !== msg.id) {
+            console.log(newMsg);
+            chrome.runtime.sendMessage(newMsg, function(response) {
+                console.log(response);
+            });
+            //notifyMe(newMsg);
+            msg = newMsg;
+        }
+    });
+}
