@@ -9,6 +9,6 @@
 	transition-property: all;
 	transition-timing-function: linear;
 }
-.weshoot-item.default {
-	/*right: -1000px;*/
+body {
+	overflow-x: hidden;
 }
