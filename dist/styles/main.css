@@ -1,12 +1,14 @@
 .weshoot-item {
-	/*position: fixed;*/
-	position: absolute;
+	position: fixed;
+	/*position: absolute;*/
 	display: block;
-	font-size: 20px;
-	color: #808080;
+	/*font-size: 20px;
+	color: #808080;*/
+	z-index: 10000;
+
 	transition-property: all;
 	transition-timing-function: linear;
 }
-.weshoot-item.default {
-	/*right: -1000px;*/
+body {
+	overflow-x: hidden;
 }
