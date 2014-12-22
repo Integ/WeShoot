@@ -3,6 +3,8 @@ temp
 test/
 .tmp
 *.mp4
+*.pem
+*.zip
 .sass-cache
 app/bower_components
 test/bower_components
