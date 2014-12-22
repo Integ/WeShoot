@@ -11,3 +11,6 @@ Hackers:
 - [Fakefish](https://github.com/fakefish)
 - [shiweifu](https://github.com/shiweifu)
 - [lvye](https://github.com/lvye)
+
+Director:
+- [Noodles](http://weibo.com/u/1922456283?topnav=1&wvr=6&topsug=1)
