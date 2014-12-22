@@ -20,11 +20,11 @@ var danmus = ['呜呜呜呜', '呵呵', '约吗', '不约，叔叔我们不约',
 var HEIGHT = window.innerHeight;
 var WIDTH = window.innerWidth;
 var danmuTop, danmuRight, danmuWidth, $danmuItem;
-/*
-setInterval(function(key, danmu) {
-    shoot(danmus[~~(Math.random() * danmus.length)])
-}, 100)
-*/
+
+// setInterval(function(key, danmu) {
+//     shoot(danmus[~~(Math.random() * danmus.length)])
+// }, 100)
+
 function shoot(danmu) {
     // $.each(danmus, function(key, danmu) {
     // console.log(danmu);
@@ -36,7 +36,7 @@ function shoot(danmu) {
         'font-size': ~~(Math.random() * 10) + 18,
     })
     $danmuItem.css({
-        top: ~~(Math.random() * HEIGHT) - $danmuItem.height(),
+        top: Math.max(0,~~(Math.random() * HEIGHT) - $danmuItem.height()),
         left: WIDTH + $danmuItem.width(),
         color: '#' + Math.floor(Math.random() * 0xFFFFFF).toString(16),
         width: $danmuItem.width(),
