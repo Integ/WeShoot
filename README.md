@@ -19,7 +19,6 @@ WeShoot
 5. 使用手机微信向第三步选的微信好友或群发消息
 
 6. 然后就可以在第4步打开的标签下看到弹幕了。
-7. 
 
 Hackers:
 - [Fakefish](https://github.com/fakefish)
